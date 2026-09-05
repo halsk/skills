@@ -1,0 +1,127 @@
+<!--
+  business-model-diagram skill 用テンプレート (我々の自作。ツールキット素材の複製ではない)
+  使い方: この骨格を複製し、主体・矢印・補足・根拠表を対象事業のものに差し替える。
+  掟: 典拠なき要素を描かない / 分からぬマスは空白 / 推定は点線+「推定」明示 /
+      根拠表を必ず対で出す / CC BY 4.0 表示義務文言を消さない。
+-->
+<meta charset="utf-8">
+<title>ビジネスモデル図解 — (事業名)</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --surface: #ffffff; --text: #1e2430; --muted: #5b6572;
+    --band-user: #eaf2fb; --band-biz: #f1edf9; --band-owner: #eaf5ee;
+    --box-fill: #ffffff; --box-stroke: #8a97a8;
+    --c-info: #2563b8; --c-kane: #a97a10; --c-mono: #2e8555; --c-sub: #8a93a0;
+    --bubble-fill: #fff8e1; --bubble-stroke: #c9a83c;
+    --empty-stroke: #a9b3bf; --grid-line: #c3cbd6;
+    --table-border: #d4dae2; --table-head: #eef1f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14171c; --surface: #1d2129; --text: #e8ebf0; --muted: #9aa4b0;
+      --band-user: #1a2333; --band-biz: #241f33; --band-owner: #1a2b21;
+      --box-fill: #242a34; --box-stroke: #5c6878;
+      --c-info: #6aa5e8; --c-kane: #d9a83c; --c-mono: #5cb884; --c-sub: #7d8794;
+      --bubble-fill: #2b2718; --bubble-stroke: #8a7326;
+      --empty-stroke: #4a525e; --grid-line: #3a424e;
+      --table-border: #3a424e; --table-head: #242a34;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171c; --surface: #1d2129; --text: #e8ebf0; --muted: #9aa4b0;
+    --band-user: #1a2333; --band-biz: #241f33; --band-owner: #1a2b21;
+    --box-fill: #242a34; --box-stroke: #5c6878;
+    --c-info: #6aa5e8; --c-kane: #d9a83c; --c-mono: #5cb884; --c-sub: #7d8794;
+    --bubble-fill: #2b2718; --bubble-stroke: #8a7326;
+    --empty-stroke: #4a525e; --grid-line: #3a424e;
+    --table-border: #3a424e; --table-head: #242a34;
+  }
+  body { background: var(--bg); color: var(--text); margin: 0; padding: 24px;
+         font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; }
+  .diagram-wrap { overflow-x: auto; background: var(--surface);
+                  border: 1px solid var(--table-border); border-radius: 12px; padding: 12px; }
+  svg { display: block; min-width: 900px; width: 100%; height: auto; }
+  svg text { fill: var(--text); paint-order: stroke; stroke: var(--surface);
+             stroke-width: 3px; stroke-linejoin: round; }
+  .attribution { color: var(--muted); font-size: 0.8rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+  th, td { border: 1px solid var(--table-border); padding: 6px 10px; text-align: left; }
+  th { background: var(--table-head); }
+</style>
+<main>
+  <h1>(事業名)のビジネスモデル図解</h1>
+
+  <div class="diagram-wrap">
+  <svg viewBox="0 0 1240 900" role="img" aria-label="(事業名)のビジネスモデル図解">
+    <defs>
+      <!-- 矢印 3 種のマーカー (情報/カネ/モノ) -->
+      <marker id="mInfo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+              orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-info)"/></marker>
+      <marker id="mKane" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+              orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-kane)"/></marker>
+      <marker id="mMono" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+              orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-mono)"/></marker>
+    </defs>
+
+    <!-- 3×3 格子: 上段=利用者 / 中段=事業 / 下段=事業者。行帯 + 列区切り(破線) -->
+    <rect x="76" y="60" width="1128" height="160" rx="10" fill="var(--band-user)"/>
+    <rect x="76" y="340" width="1128" height="195" rx="10" fill="var(--band-biz)"/>
+    <rect x="76" y="665" width="1128" height="150" rx="10" fill="var(--band-owner)"/>
+    <!-- 行ラベル(縦書き相当のスタック) -->
+    <text x="45" y="115" font-size="16" font-weight="bold" text-anchor="middle">
+      <tspan x="45" dy="0">利</tspan><tspan x="45" dy="18">用</tspan><tspan x="45" dy="18">者</tspan></text>
+    <!-- 列区切り(破線)を x=445, 835 に引く -->
+    <line x1="445" y1="60" x2="445" y2="815" stroke="var(--grid-line)" stroke-dasharray="3 6"/>
+    <line x1="835" y1="60" x2="835" y2="815" stroke="var(--grid-line)" stroke-dasharray="3 6"/>
+
+    <!-- 主体の箱 (例) -->
+    <rect x="500" y="80" width="280" height="110" rx="10" fill="var(--box-fill)"
+          stroke="var(--box-stroke)" stroke-width="1.5"/>
+    <text x="640" y="120" font-size="16" font-weight="bold" text-anchor="middle">(利用者)</text>
+
+    <!-- 空白マスの例: 分からぬマスは推測で埋めず、空白と明示する -->
+    <rect x="140" y="400" width="220" height="80" rx="10" fill="none"
+          stroke="var(--empty-stroke)" stroke-dasharray="5 5"/>
+    <text x="250" y="435" font-size="11" text-anchor="middle" fill="var(--muted)">空白マス —</text>
+    <text x="250" y="452" font-size="11" text-anchor="middle" fill="var(--muted)">典拠のある主体が無いため空けてある</text>
+
+    <!-- 矢印の例: 情報=実線 mInfo / カネ=¥バッジ添え / モノ=mMono / 不確実・推定=点線 -->
+    <path d="M640,190 L640,340" stroke="var(--c-info)" stroke-width="2" fill="none" marker-end="url(#mInfo)"/>
+    <!-- 推定のカネの流れ (点線 + ¥ バッジ + 「推定」明示) -->
+    <path d="M500,740 L405,740" stroke="var(--c-kane)" stroke-width="2" fill="none"
+          stroke-dasharray="6 5" marker-end="url(#mKane)"/>
+    <circle cx="450" cy="740" r="10" fill="var(--c-kane)"/>
+    <text x="450" y="744" font-size="11" font-weight="bold" text-anchor="middle" fill="#fff" stroke="none">¥</text>
+    <text x="450" y="722" font-size="11" text-anchor="middle">(名目) — 推定</text>
+
+    <!-- 従属・入れ子: 細線 + 従属する側の端に ● -->
+    <line x1="790" y1="440" x2="880" y2="440" stroke="var(--c-sub)" stroke-width="1.5"/>
+    <circle cx="874" cy="440" r="4.5" fill="var(--c-sub)"/>
+
+    <!-- 補足 (吹き出し): 説明がないと理解が成り立たない箇所+感動ポイント -->
+    <g>
+      <path d="M880,300 L800,358 L905,312 z" fill="var(--bubble-fill)" stroke="var(--bubble-stroke)"/>
+      <rect x="870" y="236" width="250" height="66" rx="10" fill="var(--bubble-fill)" stroke="var(--bubble-stroke)"/>
+      <text x="885" y="262" font-size="11.5">(補足の本文をここに)</text>
+    </g>
+
+    <!-- 表示義務 (CC BY 4.0) — 消さないこと -->
+    <text x="620" y="880" font-size="11" text-anchor="middle" fill="var(--muted)">
+      本図解は「ビジネスモデル図解ツールキット」(©図解総研, CC BY 4.0)の方法に基づいて作成しています。ツールキットの素材は複製していません。</text>
+  </svg>
+  </div>
+
+  <h2>凡例</h2>
+  <p><!-- 情報(青)・カネ(¥・琥珀)・モノ(緑)・点線=推定/不確実・●=従属/入れ子 を色見本つきで --></p>
+
+  <h2>根拠表 (図と対で必ず出す)</h2>
+  <table>
+    <thead><tr><th>#</th><th>要素</th><th>種別</th><th>図中の内容</th><th>典拠</th><th>確度</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>(主体名)</td><td>主体</td><td>(記載内容)</td><td>(ファイル+行 / URL と該当記述)</td><td>確実 / 推定</td></tr>
+    </tbody>
+  </table>
+
+  <p class="attribution">本図解は「ビジネスモデル図解ツールキット」(©図解総研, CC BY 4.0)の方法に基づいて作成しています。ツールキットの素材は複製していません。</p>
+</main>

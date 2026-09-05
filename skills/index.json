@@ -1,0 +1,19 @@
+{
+  "version": "1",
+  "updated_at": "2026-09-05",
+  "skills": [
+    {
+      "name": "business-model-diagram",
+      "description": "指定された資料・ドキュメント群を典拠に、ビジネスモデル図解ツールキット(©図解総研, CC BY 4.0)の「方法」に基づくビジネスモデル図解を自己完結HTML/SVGで作成する。背骨は捏造防止 — 典拠なき主体・カネの流れを図に載せない・空白マス許容・推定は点線+明示・根拠表を図と対で必ず出す。「ビジネスモデル図解」「business model diagram」と言われたら参照する。",
+      "version": "1.0.0",
+      "path": "skills/business-model-diagram",
+      "tags": [
+        "business-model",
+        "diagram",
+        "svg",
+        "anti-fabrication"
+      ],
+      "installs": 0
+    }
+  ]
+}
