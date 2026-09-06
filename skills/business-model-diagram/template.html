@@ -3,6 +3,10 @@
   使い方: この骨格を複製し、主体・矢印・補足・根拠表を対象事業のものに差し替える。
   掟: 典拠なき要素を描かない / 分からぬマスは空白 / 推定は点線+「推定」明示 /
       根拠表を必ず対で出す / CC BY 4.0 表示義務文言を消さない。
+  記号は配布版 Ver.4.2 スライド3の凡例(実物)に合わせてある(2026-09-06 確認):
+    モノ=矢印中心の緑丸 / カネ=矢印中心の黄色角丸四角+¥ / 情報=矢印中心の水色四角 /
+    主体アイコン8種(下記 defs) / 吹き出し=グレー塗り・枠線なし /
+    従属・入れ子の●=従属される側(小さい方)の端に付く
 -->
 <meta charset="utf-8">
 <title>ビジネスモデル図解 — (事業名)</title>
@@ -12,9 +16,11 @@
     --band-user: #eaf2fb; --band-biz: #f1edf9; --band-owner: #eaf5ee;
     --box-fill: #ffffff; --box-stroke: #8a97a8;
     --c-info: #2563b8; --c-kane: #a97a10; --c-mono: #2e8555; --c-sub: #8a93a0;
-    --bubble-fill: #fff8e1; --bubble-stroke: #c9a83c;
+    --bubble-fill: #e7e9ec; --bubble-stroke: none;
     --empty-stroke: #a9b3bf; --grid-line: #c3cbd6;
     --table-border: #d4dae2; --table-head: #eef1f5;
+    --icon-line: #333c47;
+    --badge-kane: #ffe066; --badge-mono: #4caf7d; --badge-info: #a9d7ee;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -22,9 +28,11 @@
       --band-user: #1a2333; --band-biz: #241f33; --band-owner: #1a2b21;
       --box-fill: #242a34; --box-stroke: #5c6878;
       --c-info: #6aa5e8; --c-kane: #d9a83c; --c-mono: #5cb884; --c-sub: #7d8794;
-      --bubble-fill: #2b2718; --bubble-stroke: #8a7326;
+      --bubble-fill: #333a44; --bubble-stroke: none;
       --empty-stroke: #4a525e; --grid-line: #3a424e;
       --table-border: #3a424e; --table-head: #242a34;
+      --icon-line: #c7cdd6;
+      --badge-kane: #e0c34a; --badge-mono: #4caf7d; --badge-info: #6f9db3;
     }
   }
   :root[data-theme="dark"] {
@@ -32,16 +40,18 @@
     --band-user: #1a2333; --band-biz: #241f33; --band-owner: #1a2b21;
     --box-fill: #242a34; --box-stroke: #5c6878;
     --c-info: #6aa5e8; --c-kane: #d9a83c; --c-mono: #5cb884; --c-sub: #7d8794;
-    --bubble-fill: #2b2718; --bubble-stroke: #8a7326;
+    --bubble-fill: #333a44; --bubble-stroke: none;
     --empty-stroke: #4a525e; --grid-line: #3a424e;
     --table-border: #3a424e; --table-head: #242a34;
+    --icon-line: #c7cdd6;
+    --badge-kane: #e0c34a; --badge-mono: #4caf7d; --badge-info: #6f9db3;
   }
   body { background: var(--bg); color: var(--text); margin: 0; padding: 24px;
          font-family: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif; }
   main { max-width: 1100px; margin: 0 auto; }
   .diagram-wrap { overflow-x: auto; background: var(--surface);
                   border: 1px solid var(--table-border); border-radius: 12px; padding: 12px; }
-  svg { display: block; min-width: 900px; width: 100%; height: auto; }
+  .diagram-wrap svg { display: block; min-width: 900px; width: 100%; height: auto; }
   svg text { fill: var(--text); paint-order: stroke; stroke: var(--surface);
              stroke-width: 3px; stroke-linejoin: round; }
   .attribution { color: var(--muted); font-size: 0.8rem; }
@@ -62,23 +72,66 @@
               orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-kane)"/></marker>
       <marker id="mMono" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
               orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--c-mono)"/></marker>
+
+      <!-- 主体アイコン 8 種 (自作の単純図形。ツールキットの画像素材は複製していない) -->
+      <symbol id="icon-person" viewBox="0 0 30 56">
+        <circle cx="15" cy="11" r="10" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <path d="M2,55 C2,35 28,35 28,55" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+      </symbol>
+      <symbol id="icon-company" viewBox="0 0 30 56">
+        <rect x="2" y="2" width="26" height="53" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <rect x="7" y="9" width="6.5" height="7" fill="var(--icon-line)"/>
+        <rect x="16.5" y="9" width="6.5" height="7" fill="var(--icon-line)"/>
+        <rect x="7" y="21" width="6.5" height="7" fill="var(--icon-line)"/>
+        <rect x="16.5" y="21" width="6.5" height="7" fill="var(--icon-line)"/>
+        <rect x="7" y="33" width="6.5" height="7" fill="var(--icon-line)"/>
+        <rect x="16.5" y="33" width="6.5" height="7" fill="var(--icon-line)"/>
+        <rect x="11" y="45" width="8" height="10" fill="var(--icon-line)"/>
+      </symbol>
+      <symbol id="icon-money" viewBox="0 0 30 56">
+        <rect x="2" y="2" width="26" height="53" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <rect x="2" y="21" width="26" height="34" fill="var(--badge-kane)" stroke="var(--icon-line)" stroke-width="2"/>
+        <text x="15" y="43" font-size="15" font-weight="bold" text-anchor="middle" stroke="none" fill="#4a3f00">¥</text>
+      </symbol>
+      <symbol id="icon-goods" viewBox="0 0 30 56">
+        <circle cx="15" cy="29" r="16" fill="var(--badge-mono)" stroke="var(--icon-line)" stroke-width="2"/>
+      </symbol>
+      <symbol id="icon-info" viewBox="0 0 30 56">
+        <rect x="2" y="2" width="26" height="53" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <rect x="2" y="21" width="26" height="34" fill="var(--badge-info)" stroke="var(--icon-line)" stroke-width="2"/>
+        <text x="15" y="41" font-size="8" text-anchor="middle" stroke="none" fill="#0d3446">データ</text>
+      </symbol>
+      <symbol id="icon-phone" viewBox="0 0 30 56">
+        <rect x="2" y="2" width="26" height="53" rx="4" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <rect x="6" y="8" width="18" height="35" fill="none" stroke="var(--icon-line)" stroke-width="1.5"/>
+        <circle cx="15" cy="49" r="3" fill="none" stroke="var(--icon-line)" stroke-width="1.5"/>
+      </symbol>
+      <symbol id="icon-store" viewBox="0 0 30 56">
+        <path d="M2,22 L15,3 L28,22 Z" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <rect x="4" y="22" width="22" height="31" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+        <rect x="12" y="37" width="7" height="16" fill="none" stroke="var(--icon-line)" stroke-width="1.8"/>
+      </symbol>
+      <symbol id="icon-other" viewBox="0 0 30 56">
+        <rect x="2" y="2" width="26" height="53" fill="none" stroke="var(--icon-line)" stroke-width="2.5"/>
+      </symbol>
     </defs>
 
-    <!-- 3×3 格子: 上段=利用者 / 中段=事業 / 下段=事業者。行帯 + 列区切り(破線) -->
+    <!-- 3×3 格子: 上段=利用者 / 中段=事業 / 下段=事業者。行帯 + 列区切り(縦線 2 本) -->
     <rect x="76" y="60" width="1128" height="160" rx="10" fill="var(--band-user)"/>
     <rect x="76" y="340" width="1128" height="195" rx="10" fill="var(--band-biz)"/>
     <rect x="76" y="665" width="1128" height="150" rx="10" fill="var(--band-owner)"/>
     <!-- 行ラベル(縦書き相当のスタック) -->
     <text x="45" y="115" font-size="16" font-weight="bold" text-anchor="middle">
       <tspan x="45" dy="0">利</tspan><tspan x="45" dy="18">用</tspan><tspan x="45" dy="18">者</tspan></text>
-    <!-- 列区切り(破線)を x=445, 835 に引く -->
+    <!-- 列区切り(縦の区切り線)を x=445, 835 に引く -->
     <line x1="445" y1="60" x2="445" y2="815" stroke="var(--grid-line)" stroke-dasharray="3 6"/>
     <line x1="835" y1="60" x2="835" y2="815" stroke="var(--grid-line)" stroke-dasharray="3 6"/>
 
-    <!-- 主体の箱 (例) -->
+    <!-- 主体の箱 (例): 左上に 8 種アイコンのうち最も近いものを 1 つ配置 -->
     <rect x="500" y="80" width="280" height="110" rx="10" fill="var(--box-fill)"
           stroke="var(--box-stroke)" stroke-width="1.5"/>
-    <text x="640" y="120" font-size="16" font-weight="bold" text-anchor="middle">(利用者)</text>
+    <use href="#icon-person" x="512" y="94" width="24" height="46"/>
+    <text x="650" y="120" font-size="16" font-weight="bold" text-anchor="middle">(利用者)</text>
 
     <!-- 空白マスの例: 分からぬマスは推測で埋めず、空白と明示する -->
     <rect x="140" y="400" width="220" height="80" rx="10" fill="none"
@@ -86,23 +139,35 @@
     <text x="250" y="435" font-size="11" text-anchor="middle" fill="var(--muted)">空白マス —</text>
     <text x="250" y="452" font-size="11" text-anchor="middle" fill="var(--muted)">典拠のある主体が無いため空けてある</text>
 
-    <!-- 矢印の例: 情報=実線 mInfo / カネ=¥バッジ添え / モノ=mMono / 不確実・推定=点線 -->
+    <!-- 矢印の例: 3 種とも「中心に規定の印」を置く -->
+    <!-- 情報の流れ: 実線 + 中心に水色の四角(角丸なし・ラベルなし) -->
     <path d="M640,190 L640,340" stroke="var(--c-info)" stroke-width="2" fill="none" marker-end="url(#mInfo)"/>
-    <!-- 推定のカネの流れ (点線 + ¥ バッジ + 「推定」明示) -->
+    <rect x="627" y="258" width="26" height="26" fill="var(--badge-info)" stroke="var(--icon-line)" stroke-width="1.2"/>
+
+    <!-- モノの流れ: 実線 + 中心に緑の丸(ラベルなし) -->
+    <path d="M300,240 L300,340" stroke="var(--c-mono)" stroke-width="2" fill="none" marker-end="url(#mMono)"/>
+    <circle cx="300" cy="290" r="13" fill="var(--badge-mono)" stroke="var(--icon-line)" stroke-width="1.2"/>
+
+    <!-- 推定のカネの流れ: 点線 + 中心に黄色の角丸四角+¥ + 「推定」明示 -->
     <path d="M500,740 L405,740" stroke="var(--c-kane)" stroke-width="2" fill="none"
           stroke-dasharray="6 5" marker-end="url(#mKane)"/>
-    <circle cx="450" cy="740" r="10" fill="var(--c-kane)"/>
-    <text x="450" y="744" font-size="11" font-weight="bold" text-anchor="middle" fill="#fff" stroke="none">¥</text>
-    <text x="450" y="722" font-size="11" text-anchor="middle">(名目) — 推定</text>
+    <rect x="435" y="726" width="30" height="28" rx="7" fill="var(--badge-kane)" stroke="var(--icon-line)" stroke-width="1.2"/>
+    <text x="450" y="746" font-size="13" font-weight="bold" text-anchor="middle" fill="#4a3f00" stroke="none">¥</text>
+    <text x="450" y="712" font-size="11" text-anchor="middle">(名目) — 推定</text>
 
-    <!-- 従属・入れ子: 細線 + 従属する側の端に ● -->
-    <line x1="790" y1="440" x2="880" y2="440" stroke="var(--c-sub)" stroke-width="1.5"/>
-    <circle cx="874" cy="440" r="4.5" fill="var(--c-sub)"/>
+    <!-- 従属関係: A(容れる側・大)—●—B(従属する側・小)。「B は A に属す」なら ● は B 側の端 -->
+    <rect x="700" y="415" width="60" height="50" rx="8" fill="var(--box-fill)" stroke="var(--box-stroke)" stroke-width="1.5"/>
+    <text x="730" y="445" font-size="14" font-weight="bold" text-anchor="middle">A</text>
+    <rect x="820" y="425" width="50" height="34" rx="6" fill="var(--box-fill)" stroke="var(--box-stroke)" stroke-width="1.5"/>
+    <text x="845" y="447" font-size="13" font-weight="bold" text-anchor="middle">B</text>
+    <line x1="760" y1="442" x2="820" y2="442" stroke="var(--c-sub)" stroke-width="1.5"/>
+    <circle cx="814" cy="442" r="4.5" fill="var(--c-sub)"/>
+    <text x="790" y="484" font-size="10.5" text-anchor="middle" fill="var(--muted)">B は A に属す — ● は B(従属する側)の端</text>
 
-    <!-- 補足 (吹き出し): 説明がないと理解が成り立たない箇所+感動ポイント -->
+    <!-- 補足 (吹き出し): グレー塗り・枠線なし。三角の尻尾で対象を指す -->
     <g>
-      <path d="M880,300 L800,358 L905,312 z" fill="var(--bubble-fill)" stroke="var(--bubble-stroke)"/>
-      <rect x="870" y="236" width="250" height="66" rx="10" fill="var(--bubble-fill)" stroke="var(--bubble-stroke)"/>
+      <path d="M880,300 L800,358 L905,312 z" fill="var(--bubble-fill)" stroke="none"/>
+      <rect x="870" y="236" width="250" height="66" rx="10" fill="var(--bubble-fill)" stroke="none"/>
       <text x="885" y="262" font-size="11.5">(補足の本文をここに)</text>
     </g>
 
@@ -113,7 +178,12 @@
   </div>
 
   <h2>凡例</h2>
-  <p><!-- 情報(青)・カネ(¥・琥珀)・モノ(緑)・点線=推定/不確実・●=従属/入れ子 を色見本つきで --></p>
+  <p>
+    <svg width="20" height="20" style="vertical-align:middle"><circle cx="10" cy="10" r="9" fill="var(--badge-mono)" stroke="var(--icon-line)"/></svg> モノの流れ(矢印中心の緑丸)&emsp;
+    <svg width="24" height="20" style="vertical-align:middle"><rect x="2" y="2" width="20" height="16" rx="5" fill="var(--badge-kane)" stroke="var(--icon-line)"/></svg> カネの流れ(矢印中心の黄色角丸四角+¥)&emsp;
+    <svg width="20" height="20" style="vertical-align:middle"><rect x="1" y="1" width="18" height="18" fill="var(--badge-info)" stroke="var(--icon-line)"/></svg> 情報の流れ(矢印中心の水色四角)&emsp;
+    点線=推定/不確実&emsp;●=従属(される側)/入れ子(小さい方の角)
+  </p>
 
   <h2>根拠表 (図と対で必ず出す)</h2>
   <table>
